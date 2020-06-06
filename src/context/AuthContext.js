@@ -39,7 +39,8 @@ const signup = (dispatch) => {
 		//if signed up, modify state show that already authenticated
 		//if fail, show an error message
 		try {
-			const response = await printtiles.post("/signin", { email, password });
+			const response = await printtiles.post("/register", { email, password });
+			console.log(response.data);
 			await AsyncStorage.setItem("token", response.data.token);
 			dispatch({ type: "signup", payload: response.data.token });
 			navigate("Signin");
@@ -60,9 +61,9 @@ const signin = (dispatch) => {
 		//if signed up, modify state show that already authenticated
 		//if fail, show an error message
 		try {
-			const response = await printtiles.post("/signin", { email, password });
-			await AsyncStorage.setItem("token", response.data.token);
-			dispatch({ type: "signin", payload: response.data.token });
+			const response = await printtiles.post("/login", { email, password });
+			await AsyncStorage.setItem("token", response.data.data.token);
+			dispatch({ type: "signin", payload: response.data.data.token });
 			navigate("PickPhoto");
 			//navigate to other screen
 		} catch (err) {
