@@ -15,7 +15,7 @@ import ResolveAuthScreen from "./src/screens/ResolveAuthScreen";
 const Stack = createStackNavigator();
 const StackScreens = () => {
 	return (
-		<Stack.Navigator initialRouteName="Home">
+		<Stack.Navigator initialRouteName="Signin">
 			<Stack.Screen
 				name="ResolveAuthScreen"
 				component={ResolveAuthScreen}

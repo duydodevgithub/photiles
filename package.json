@@ -17,6 +17,7 @@
     "@react-navigation/stack": "^5.4.1",
     "axios": "^0.19.2",
     "expo": "~37.0.3",
+    "expo-av": "~8.1.0",
     "expo-cli": "^3.21.5",
     "expo-image-picker": "~8.1.0",
     "expo-media-library": "~8.1.0",
@@ -28,6 +29,7 @@
     "react-native-reanimated": "~1.7.0",
     "react-native-safe-area-context": "0.7.3",
     "react-native-screens": "~2.2.0",
+    "react-native-snap-carousel": "^3.9.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {

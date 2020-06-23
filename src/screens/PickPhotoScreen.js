@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Button, FlatList, Image } from "react-native";
 import Constants from "expo-constants";
 import * as MediaLibrary from "expo-media-library";
-import PhotoLibrary from "../components/PhotoLibrary";
+// import PhotoLibrary from "../components/PickPhotoComponents/PhotoLibrary";
 
 const PickPhotoScreen = ({ navigation }) => {
 	navigation.setOptions({
@@ -22,6 +22,8 @@ const PickPhotoScreen = ({ navigation }) => {
 		},
 	});
 	const [image, setImage] = useState(null);
+	const [album, setAlbum] = useState(null);
+
 	useEffect(() => {
 		(async () => {
 			if (Constants.platform.ios) {
@@ -44,6 +46,15 @@ const PickPhotoScreen = ({ navigation }) => {
 		}
 	};
 
+	const loadAlbums = async () => {
+		try {
+			let results = await MediaLibrary.getAlbumsAsync();
+			console.log(results);
+		} catch (err) {
+			console.loq(err);
+		}
+	};
+
 	// 	if (!result.cancelled) {
 	// 	  setImage(result.uri);
 	// 	}
@@ -52,6 +63,7 @@ const PickPhotoScreen = ({ navigation }) => {
 	return (
 		<View>
 			<Text>PickPhoto Screen</Text>
+			<Button title="Load Album" onPress={loadAlbums} />
 			<Button title="Load Image" onPress={pickImage} />
 			{image === null ? null : (
 				<FlatList

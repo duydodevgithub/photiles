@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity } from "react-native";
+import { SafeAreaView, StyleSheet, TouchableOpacity } from "react-native";
 import { Text, Input, Button } from "react-native-elements";
 import Spacer from "../components/Spacer";
 import { Context as AuthContext } from "../context/AuthContext";
@@ -8,11 +8,12 @@ const SignupScreen = ({ navigation }) => {
 	navigation.setOptions({
 		headerShown: false,
 	});
-	const { state, signin, clearErrorMessage } = useContext(AuthContext);
+	const { state, signin, clearErrorMessage, tryLocalSignin } = useContext(AuthContext);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
 	useEffect(() => {
+		tryLocalSignin();
 		const unsubscribe = navigation.addListener("focus", () => {
 			clearErrorMessage();
 		});
@@ -20,9 +21,9 @@ const SignupScreen = ({ navigation }) => {
 		return unsubscribe;
 	}, []);
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Spacer>
-				<Text h3>Sign In for Photiles</Text>
+				<Text h3>Sign In for Photo App</Text>
 			</Spacer>
 			<Input
 				label="Email"
@@ -51,7 +52,7 @@ const SignupScreen = ({ navigation }) => {
 					<Text style={styles.link}>Don't have an account? Sign up</Text>
 				</Spacer>
 			</TouchableOpacity>
-		</View>
+		</SafeAreaView>
 	);
 };
 

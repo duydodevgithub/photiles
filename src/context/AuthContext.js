@@ -28,7 +28,7 @@ const tryLocalSignin = (dispatch) => async () => {
 	const token = await AsyncStorage.getItem("token");
 	if (token) {
 		dispatch({ type: "signin", payload: token });
-		navigate("PickPhoto");
+		navigate("Home");
 	} else {
 		navigate("Signin");
 	}
@@ -64,7 +64,7 @@ const signin = (dispatch) => {
 			const response = await printtiles.post("/login", { email, password });
 			await AsyncStorage.setItem("token", response.data.data.token);
 			dispatch({ type: "signin", payload: response.data.data.token });
-			navigate("PickPhoto");
+			navigate("Home");
 			//navigate to other screen
 		} catch (err) {
 			console.log(err.message);
@@ -81,7 +81,7 @@ const signout = (dispatch) => {
 		try {
 			await AsyncStorage.removeItem("token");
 			dispatch({ type: "signout" });
-			navigate("Home");
+			navigate("Signin");
 		} catch (err) {
 			console.log(err.message);
 			dispatch({
@@ -94,6 +94,6 @@ const signout = (dispatch) => {
 
 export const { Provider, Context } = createDataContext(
 	authReducer,
-	{ signin, signout, signup, signout, clearErrorMessage, tryLocalSignin },
+	{ signin, signout, signup, clearErrorMessage, tryLocalSignin },
 	{ token: null, errorMessage: "" }
 );

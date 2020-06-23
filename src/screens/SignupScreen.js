@@ -22,7 +22,7 @@ const SignupScreen = ({ navigation }) => {
 	return (
 		<View style={styles.container}>
 			<Spacer>
-				<Text h3>Sign Up for Photiles</Text>
+				<Text h3>Sign Up for Photo App</Text>
 			</Spacer>
 			<Input
 				label="Email"
