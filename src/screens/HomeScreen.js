@@ -24,7 +24,7 @@ const HomeScreen = ({navigation}) => {
                     "Authorization": "Bearer " + token
                 }
             })
-            console.log(response.data.data);
+            // console.log(response.data.data);
             setBanners(response.data.data)
         } catch (err) {
 
